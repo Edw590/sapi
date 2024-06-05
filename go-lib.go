@@ -26,16 +26,22 @@ func NewSapi() (*Sapi, error) {
 }
 
 // Say speaks the given text
-func (s *Sapi) Say(message string) {
-	oleutil.MustCallMethod(s.voice, "Speak", message, 0)
+func (s *Sapi) Say(message string) error {
+	_, err := oleutil.CallMethod(s.voice, "Speak", message, 0)
+
+	return err
 }
 
 // SetRate sets the rate of speech
-func (s *Sapi) SetRate(rate int) {
-	oleutil.PutProperty(s.voice, "Rate", rate)
+func (s *Sapi) SetRate(rate int) error {
+	_, err := oleutil.PutProperty(s.voice, "Rate", rate)
+
+	return err
 }
 
 // SetVolume sets the volume of the speech
-func (s *Sapi) SetVolume(volume int) {
-	oleutil.PutProperty(s.voice, "Volume", volume)
+func (s *Sapi) SetVolume(volume int) error {
+	_, err := oleutil.PutProperty(s.voice, "Volume", volume)
+
+	return err
 }
