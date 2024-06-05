@@ -1,4 +1,4 @@
-package sapi_go
+package sapi
 
 import (
 	"github.com/go-ole/go-ole"
