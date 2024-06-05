@@ -1,4 +1,4 @@
-module sapi-go
+module github.com/Edw590/sapi-go
 
 go 1.20
 
