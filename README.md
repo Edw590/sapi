@@ -1,5 +1,9 @@
 # sapi-go
-A simple Go SAPI TTS wrapper
+A simple Go Windows SAPI TTS wrapper
+
+Main library gotten from https://github.com/DeepHorizons/tts, so thank you as it was the base for this.
+
+Only supports SAPI.
 
 ## Usage
 After initializing your module, get the library with:
@@ -21,5 +25,11 @@ func main() {
     }
 
     tts.Say("Hello world!")
+
+    tts.SetRate(-5)
+    tts.Say("This will be said slower")
+
+    tts.SetVolume(30)
+    tts.Say("This will be said on a lower volume")
 }
 ```
