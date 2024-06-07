@@ -54,68 +54,93 @@ func NewSapi() (*Sapi, error) {
 // Main methods
 
 // Speak initiates the speaking of a text string, a text file, an XML file, or a wave file by the voice.
-func (s *Sapi) Speak(message string, flags int) {
-	_, _ = oleutil.CallMethod(s.voice, "Speak", message, flags)
+func (s *Sapi) Speak(message string, flags int) error {
+	_, err := oleutil.CallMethod(s.voice, "Speak", message, flags)
+
+	return err
 }
 
 // Pause pauses the voice at the nearest alert boundary and closes the output device, allowing it to be used by other voices.
-func (s *Sapi) Pause() {
-	_, _ = oleutil.CallMethod(s.voice, "Pause")
+func (s *Sapi) Pause() error {
+	_, err := oleutil.CallMethod(s.voice, "Pause")
+
+	return err
 }
 
 // Resume causes the voice to resume speaking when paused.
-func (s *Sapi) Resume() {
-	_, _ = oleutil.CallMethod(s.voice, "Resume")
+func (s *Sapi) Resume() error {
+	_, err := oleutil.CallMethod(s.voice, "Resume")
+
+	return err
 }
 
 // WaitUntilDone blocks the caller until either the voice has finished speaking or the specified time interval has elapsed.
-func (s *Sapi) WaitUntilDone(ms_timeout int) {
-	_, _ = oleutil.CallMethod(s.voice, "WaitUntilDone", ms_timeout)
+func (s *Sapi) WaitUntilDone(ms_timeout int) error {
+	_, err := oleutil.CallMethod(s.voice, "WaitUntilDone", ms_timeout)
+
+	return err
 }
 
 // Skip skips the voice forward or backward by the specified number of "Sentence" items within the current input text stream.
-func (s *Sapi) Skip(num_items int) {
-	_, _ = oleutil.CallMethod(s.voice, "Skip", "Sentence", num_items)
+func (s *Sapi) Skip(num_items int) error {
+	_, err := oleutil.CallMethod(s.voice, "Skip", "Sentence", num_items)
+
+	return err
 }
 
 /////////////////////////////////////////////////////////////////
 // Setters
 
 // SetRate sets the speaking rate of the voice.
-func (s *Sapi) SetRate(rate int) {
-	_, _ = oleutil.PutProperty(s.voice, "Rate", rate)
+func (s *Sapi) SetRate(rate int) error {
+	_, err := oleutil.PutProperty(s.voice, "Rate", rate)
+
+	return err
 }
 
 // SetVolume sets the base volume (loudness) level of the voice.
-func (s *Sapi) SetVolume(volume int) {
-	_, _ = oleutil.PutProperty(s.voice, "Volume", volume)
+func (s *Sapi) SetVolume(volume int) error {
+	_, err := oleutil.PutProperty(s.voice, "Volume", volume)
+
+	return err
 }
 
 // SetPriority sets the priority level of the voice.
-func (s *Sapi) SetPriority(priority int) {
-	_, _ = oleutil.PutProperty(s.voice, "Priority", priority)
+func (s *Sapi) SetPriority(priority int) error {
+	_, err := oleutil.PutProperty(s.voice, "Priority", priority)
+
+	return err
 }
 
 /////////////////////////////////////////////////////////////////
 // Getters
 
 // GetRate gets the speaking rate of the voice.
-func (s *Sapi) GetRate() int {
-	rate, _ := oleutil.GetProperty(s.voice, "Rate")
+func (s *Sapi) GetRate() (int, error) {
+	rate, err := oleutil.GetProperty(s.voice, "Rate")
+	if err != nil {
+		return 0, err
+	}
 
-	return int(rate.Val)
+	return int(rate.Val), nil
 }
 
 // GetVolume gets the base volume (loudness) level of the voice.
-func (s *Sapi) GetVolume() int {
-	volume, _ := oleutil.GetProperty(s.voice, "Volume")
+func (s *Sapi) GetVolume() (int, error) {
+	volume, err := oleutil.GetProperty(s.voice, "Volume")
+	if err != nil {
+		return 0, err
+	}
 
-	return int(volume.Val)
+	return int(volume.Val), nil
 }
 
 // GetPriority gets the priority level of the voice.
-func (s *Sapi) GetPriority() int {
-	priority, _ := oleutil.GetProperty(s.voice, "Priority")
+func (s *Sapi) GetPriority() (int, error) {
+	priority, err := oleutil.GetProperty(s.voice, "Priority")
+	if err != nil {
+		return 0, err
+	}
 
-	return int(priority.Val)
+	return int(priority.Val), nil
 }
