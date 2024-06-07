@@ -8,7 +8,7 @@ Only supports SAPI.
 ## Usage
 After initializing your module, get the library with:
 ```
-go get github.com/Edw590/sapi-go
+go get github.com/Edw590/sapi-go@latest
 ```
 ```go
 package main
