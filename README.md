@@ -10,26 +10,4 @@ After initializing your module, get the library with:
 ```
 go get github.com/Edw590/sapi-go@latest
 ```
-```go
-package main
-
-import (
-  	"github.com/Edw590/sapi-go"
-  	"log"
-)
-
-func main() {
-    tts, err := sapi.NewSapi()
-    if err != nil {
-        log.Fatal(err)
-    }
-
-    tts.Say("Hello world!")
-
-    tts.SetRate(-5)
-    tts.Say("This will be said slower")
-
-    tts.SetVolume(30)
-    tts.Say("This will be said on a lower volume")
-}
-```
+Check the example on the `examples` folder.
