@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	// Check the full SAPI documentation on https://learn.microsoft.com/en-us/previous-versions/windows/desktop/ee125647(v=vs.85)
+	// Check the full SAPI documentation on https://learn.microsoft.com/en-us/previous-versions/windows/desktop/ee125640(v=vs.85)
 
 	ole.CoInitialize(0)
 	tts, _ := sapi.NewSapi()
