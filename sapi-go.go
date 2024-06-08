@@ -53,10 +53,13 @@ func NewSapi() (*Sapi, error) {
 // Main methods
 
 // Speak initiates the speaking of a text string, a text file, an XML file, or a wave file by the voice.
-func (s *Sapi) Speak(message string, flags int) error {
-	_, err := oleutil.CallMethod(s.voice, "Speak", message, flags)
+func (s *Sapi) Speak(message string, flags int) (int, error) {
+	ret, err := oleutil.CallMethod(s.voice, "Speak", message, flags)
+	if err != nil {
+		return 0, err
+	}
 
-	return err
+	return int(ret.Val), nil
 }
 
 // Pause pauses the voice at the nearest alert boundary and closes the output device, allowing it to be used by other voices.
@@ -74,17 +77,23 @@ func (s *Sapi) Resume() error {
 }
 
 // WaitUntilDone blocks the caller until either the voice has finished speaking or the specified time interval has elapsed.
-func (s *Sapi) WaitUntilDone(ms_timeout int) error {
-	_, err := oleutil.CallMethod(s.voice, "WaitUntilDone", ms_timeout)
+func (s *Sapi) WaitUntilDone(ms_timeout int) (bool, error) {
+	ret, err := oleutil.CallMethod(s.voice, "WaitUntilDone", ms_timeout)
+	if err != nil {
+		return false, err
+	}
 
-	return err
+	return ret.Value().(bool), nil
 }
 
 // Skip skips the voice forward or backward by the specified number of "Sentence" items within the current input text stream.
-func (s *Sapi) Skip(num_items int) error {
-	_, err := oleutil.CallMethod(s.voice, "Skip", "Sentence", num_items)
+func (s *Sapi) Skip(num_items int) (int, error) {
+	ret, err := oleutil.CallMethod(s.voice, "Skip", "Sentence", num_items)
+	if err != nil {
+		return 0, err
+	}
 
-	return err
+	return int(ret.Val), nil
 }
 
 /////////////////////////////////////////////////////////////////
