@@ -1,4 +1,4 @@
-// Package sapi has its documentation on: https://learn.microsoft.com/en-us/previous-versions/windows/desktop/ee125647(v=vs.85)
+// Package sapi has its documentation on: https://learn.microsoft.com/en-us/previous-versions/windows/desktop/ee125640(v=vs.85)
 package sapi
 
 import (
