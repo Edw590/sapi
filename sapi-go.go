@@ -35,9 +35,8 @@ const (
 	SVPOver   = 2
 )
 
-// NewSapi creates the SAPI TTS object
+// NewSapi creates the SAPI TTS object. Call ole.CoInitialize() or ole.CoInitializeEx() before calling this function.
 func NewSapi() (*Sapi, error) {
-	ole.CoInitialize(0)
 	voice_obj, err := oleutil.CreateObject("SAPI.SpVoice")
 	if err != nil {
 		return nil, err

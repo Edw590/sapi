@@ -2,12 +2,14 @@ package main
 
 import (
 	"github.com/Edw590/sapi-go"
+	"github.com/go-ole/go-ole"
 	"time"
 )
 
 func main() {
 	// Check the full SAPI documentation on https://learn.microsoft.com/en-us/previous-versions/windows/desktop/ee125647(v=vs.85)
 
+	ole.CoInitialize(0)
 	tts, _ := sapi.NewSapi()
 	tts2, _ := sapi.NewSapi()
 
